@@ -1,0 +1,14 @@
+.container-main{
+    padding: 20px 0;
+}
+.pagination{
+    justify-content: center;
+    margin-top: 20px;
+}
+.navbar-dark .navbar-brand{
+    color:rgba(255, 255, 255, 0.5);
+}
+.navbar-dark .navbar-brand.active{
+    color: #fff;
+}
+/* user */
