@@ -62,7 +62,6 @@ class AbilityController extends Controller
                 $subData = array(
                     'id' => $item['id'],
                     'name' => $item['title'],
-                    'open' => true
                 );
                 unset($data[$key]);
                 $children = $this->checkChildren($data,$item['id']);

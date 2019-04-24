@@ -60,7 +60,6 @@ class DictionaryController extends Controller
                 $subData = array(
                     'id' => $item['id'],
                     'name' => $item['name'],
-                    'open' => true
                 );
                 unset($data[$key]);
                 $children = $this->checkChildren($data,$item['id']);

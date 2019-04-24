@@ -84,7 +84,6 @@ class RoleController extends Controller
                 $subData = array(
                     'id' => $item['id'],
                     'name' => $item['title'],
-                    'open' => true
                 );
                 if(in_array($item['id'],$abilityIds)){
                     $subData['checked'] = true;

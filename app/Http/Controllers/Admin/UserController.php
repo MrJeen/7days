@@ -46,7 +46,7 @@ class UserController extends Controller
         //当前用户拥有的角色
         $currentRoles = $currentUser->getRoles()->toArray();
         //所有角色
-        $roles = $bouncer->role()::all();
+        $roles = $bouncer->role()::where('name','<>','DEVELOPER')->get();
         return view('admin.user.user-role',compact('currentRoles','roles', 'id'));
     }
 

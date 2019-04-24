@@ -11,21 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(
+    [
+        'middleware' => 'checkFrontPermission',
+    ],
+    function () {
+        Route::get('/', function () {
+                return view('welcome');
+            });
 
-Route::group([
-        'prefix'=>'admin',
-        'namespace'=>'Admin',
-        'middleware'=>'checkPermission'
+        Auth::routes();
+
+        Route::get('/home', 'HomeController@index')->name('home');
+    }
+);
+
+
+Route::group(
+    [
+        'prefix' => 'admin',
+        'namespace' => 'Admin',
+        'middleware' => 'checkPermission',
     ],
 
-    function(){
+    function () {
         Route::get('/', 'DefaultController@index')->name('admin_home');
 
         /*用户*/
@@ -51,4 +62,5 @@ Route::group([
         Route::get('/setting/dictionary', 'DictionaryController@index')->name('admin_dictionary');
         Route::get('/setting/dictionary/create', 'DictionaryController@create')->name('admin_dictionary_create');
         Route::post('/setting/dictionary/store', 'DictionaryController@store')->name('admin_dictionary_store');
-});
+    }
+);

@@ -24,7 +24,7 @@
 
     <div class="table-responsive">
         @if(count($data))
-            <table class="table table-bordered table-hover dataTable dictionary-table">
+            <table class="table table-bordered table-hover dataTable ability-table">
                 <thead>
                 <tr>
                     <th>编号</th>
