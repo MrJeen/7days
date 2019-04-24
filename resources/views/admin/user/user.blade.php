@@ -6,9 +6,9 @@
 
 <?php $user_sidebar = 'user' ?>
 
-@section('load_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('dataTables/css/dataTables.bootstrap.min.css') }}">
-@endsection
+@endpush
 
 @section('user-content')
 
@@ -57,7 +57,7 @@
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"></div>
 @endsection
 
-@section('load_js')
+@push('scripts')
     <script src="{{ asset('dataTables/js/jquery.dataTables.min.js') }}"></script>
     <script>
         $('.user-table').DataTable({
@@ -83,4 +83,4 @@
         });
 
     </script>
-@endsection
+@endpush

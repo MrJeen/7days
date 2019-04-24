@@ -6,9 +6,9 @@
 
 <?php $setting_sidebar = 'ability' ?>
 
-@section('load_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('zTree/css/zTreeStyle.css') }}">
-@endsection
+@endpush
 
 @section('setting-content')
 
@@ -58,7 +58,7 @@
 
 @endsection
 
-@section('load_js')
+@push('scripts')
     <script src="{{ asset('zTree/js/jquery.ztree.all.min.js') }}"></script>
     <script>
         var zTreeObj,
@@ -82,7 +82,6 @@
         });
 
         function zTreeOnCheck(event, treeId, treeNode) {
-            console.log(treeNode)
             if(treeNode.checked){
                 $("#parentId").val(treeNode.id);
             }else{
@@ -91,7 +90,7 @@
         };
 
     </script>
-@endsection
+@endpush
 
 
 

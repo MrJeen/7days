@@ -19,12 +19,19 @@ class AbilityController extends Controller
     }
 
     public function create(Bouncer $bouncer){
+
+        $allData = $bouncer->ability()::where([
+            ['title','<>','All abilities'],
+            ['visible',1]
+        ])->orderBy('seq')->get();
+
         //查询顶级分类
-        $allData = $bouncer->ability()::where('title','<>','All abilities')->get();
         $data = $bouncer->ability()::where([
             ['parentId',0],
             ['title','<>','All abilities'],
-        ])->get();
+            ['visible',1]
+        ])->orderBy('seq')->get();
+
         $zTreeData = array();
         foreach($data as $item){
             $subData = array(

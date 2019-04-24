@@ -28,12 +28,19 @@ class RoleController extends Controller
     }
 
     public function ability(Bouncer $bouncer, $id){
+
+        $allData = $bouncer->ability()::where([
+            ['visible',1],
+            ['title','<>','All abilities']
+        ])->get();
+
         //查询顶级分类
-        $allData = $bouncer->ability()::where('title','<>','All abilities')->get();
         $data = $bouncer->ability()::where([
+            ['visible',1],
             ['parentId',0],
             ['title','<>','All abilities'],
         ])->get();
+
         $role = $bouncer->role()::find($id);
         $abilities = $role->getAbilities()->toArray();
         $abilityIds = array_map(function($value){
@@ -60,18 +67,27 @@ class RoleController extends Controller
     }
 
     public function storeAbility(Bouncer $bouncer, Request $request, $id){
-        $data = $request->input();
+        $abilities = $request->input('abilities');
         //查询角色
         $role = $bouncer->role()::find($id);
         if(empty($role)){
             throw new \Exception('该角色不存在 #'.$id);
         }
-        //移除所有权限
-        $abilities = $role->getAbilities();
-        $role->disallow($abilities);
-        if(!empty($data['abilities'])){
-            //添加权限
-            $role->allow($data['abilities']);
+
+        $hadAbilities = $role->getAbilities()->pluck('id')->toArray();
+
+        if(!empty($abilities)){
+
+            //需移除
+            $removeAbilities = array_diff($hadAbilities,$abilities);
+            if($removeAbilities){
+                $role->disallow($removeAbilities);
+            }
+
+            $role->allow($abilities);
+
+        }else{
+            $role->disallow($hadAbilities);
         }
         session()->flash('success','权限分配成功');
         return 'true';

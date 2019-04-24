@@ -6,10 +6,10 @@
 
 <?php $setting_sidebar = 'role' ?>
 
-@section('load_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('dataTables/css/dataTables.bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('zTree/css/zTreeStyle.css') }}">
-@endsection
+@endpush
 
 @section('setting-content')
     <nav class="navbar navbar-expand-lg">
@@ -58,7 +58,7 @@
 
 @endsection
 
-@section('load_js')
+@push('scripts')
     <script src="{{ asset('dataTables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('zTree/js/jquery.ztree.all.min.js') }}"></script>
     <script>
@@ -84,4 +84,4 @@
             });
         });
     </script>
-@endsection
+@endpush

@@ -6,9 +6,9 @@
 
 <?php $setting_sidebar = 'dictionary' ?>
 
-@section('load_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('zTree/css/zTreeStyle.css') }}">
-@endsection
+@endpush
 
 @section('setting-content')
 
@@ -58,7 +58,7 @@
 
 @endsection
 
-@section('load_js')
+@push('scripts')
     <script src="{{ asset('zTree/js/jquery.ztree.all.min.js') }}"></script>
     <script>
         var zTreeObj,
@@ -91,7 +91,7 @@
         };
 
     </script>
-@endsection
+@endpush
 
 
 

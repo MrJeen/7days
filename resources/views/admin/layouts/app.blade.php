@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-    @yield('load_css')
+    @stack('css')
 
     <title>后台管理 - @yield('title')</title>
 </head>
@@ -66,12 +66,15 @@
 </nav>
 
 <div class="container">
+    {{--@inject('nav', 'App\Http\Controllers\Admin\InjectController')--}}
+    {{--{!! $nav->navigation() !!}--}}
+
     @yield('content')
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
 
-@yield('load_js')
+@stack('scripts')
 
 </body>
 </html>

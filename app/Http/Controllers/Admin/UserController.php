@@ -53,12 +53,21 @@ class UserController extends Controller
     public function storeRole(User $user, Request $request, $id){
         $newRoles = $request->input('roles');
         $currentUser = $user::find($id);
-        //删除角色
-        $roles = $currentUser->getRoles();
-        $currentUser->retract($roles);
-        //添加角色
+
+        $roles = $currentUser->getRoles()->toArray();
+
         if(!empty($newRoles)){
+
+            //需移除
+            $removeRoles = array_diff($roles,$newRoles);
+            if($removeRoles){
+                $currentUser->retract($removeRoles);
+            }
+
             $currentUser->assign($newRoles);
+
+        }else{
+            $currentUser->retract($roles);
         }
         session()->flash('success','分配角色成功');
         return redirect()->route('admin_user');

@@ -6,9 +6,9 @@
 
 <?php $setting_sidebar = 'ability' ?>
 
-@section('load_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('dataTables/css/dataTables.bootstrap.min.css') }}">
-@endsection
+@endpush
 
 @section('setting-content')
     <nav class="navbar navbar-expand-lg">
@@ -31,6 +31,8 @@
                     <th>权限名</th>
                     <th>权限编码（别名）</th>
                     <th>从属</th>
+                    <th>是否可见</th>
+                    <th>排序</th>
                     <th>更新时间</th>
                 </tr>
                 </thead>
@@ -41,6 +43,8 @@
                         <td>{{ $item->title }}</td>
                         <td>{{ $item->name }}</td>
                         <td>@if($item->parent) {{ $item->parent->title }} @endif</td>
+                        <td>@if($item->visible) 是 @else 否 @endif</td>
+                        <td>{{ $item->seq }}</td>
                         <td>{{ $item->updated_at }}</td>
                     </tr>
                 @endforeach
@@ -54,7 +58,7 @@
 
 @endsection
 
-@section('load_js')
+@push('scripts')
     <script src="{{ asset('dataTables/js/jquery.dataTables.min.js') }}"></script>
     <script>
         $('.ability-table').DataTable({
@@ -67,4 +71,4 @@
             'order': []
         })
     </script>
-@endsection
+@endpush

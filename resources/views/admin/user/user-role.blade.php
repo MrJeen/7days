@@ -12,7 +12,7 @@
                     @csrf
                     @foreach($roles as $role)
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" id="checkbox-{{ $role->id }}" name="roles[]" class="custom-control-input" value="{{ $role->id }}" @if(in_array($role->name,$currentRoles)) checked @endif>
+                            <input type="checkbox" id="checkbox-{{ $role->id }}" name="roles[]" class="custom-control-input" value="{{ $role->name }}" @if(in_array($role->name,$currentRoles)) checked @endif>
                             <label class="custom-control-label" for="checkbox-{{ $role->id }}">{{ $role->title }}</label>
                         </div>
                     @endforeach
